@@ -16,7 +16,16 @@ const cars = (state = [], action) => {
 }
 
 const makes = (state = [], action) => {
+
     switch(action.type) {
+     case 'FETCH_MAKES':
+      console.log(action)
+      return action.value
+     case 'DELETE_MAKES':
+      const newState = [...state]
+       newState.splice(action.value, 1) 
+       console.log('Delete Func', action.value)
+       return newState
         default:
             return state
     }
