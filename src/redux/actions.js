@@ -15,8 +15,9 @@ export const removeCar = (index) => {
 }
 
 export const deleteMake = (index) => {
+ console.log(index)
  return {
-  type: 'DELETE_MAKE',
+  type: 'DELETE_MAKES',
   value: index
 }
 }

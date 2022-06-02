@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import { Button, Table, TableHead, TableBody, TableRow, TableCell, Menu, MenuItem } from "@material-ui/core"
 import { MoreVert } from '@material-ui/icons'
 
@@ -6,22 +6,29 @@ import { MoreVert } from '@material-ui/icons'
 const Import = (props) => {
 
  const [anchorEl, setAnchorEl] = useState(null);
- let id = useRef(0)
+ const [id, setId] = useState(null);
 
- const handleClick = (event,e) => {
+ const handleClick = (event,id) => {
    setAnchorEl(event.currentTarget);
-   id.current = e
+   // id.current = e
+   console.log(event,id)
+   setId(id)
  };
 
- const handleClose = () => {
+ const handleClose = (e) => { 
+  console.log(id)
    setAnchorEl(null);
-   props.deleteMake()
+   props.deleteMake(id)
  };
 
+ useEffect(() => {
+  console.log(id)
+ },[id])
 
     return (
      <>
         <Button variant="contained" color="primary" onClick={props.fetchMakes}>Import</Button>
+        <h2>Count: {props.makes.length}</h2>
         <Table>
          <TableHead>
           <TableRow>
